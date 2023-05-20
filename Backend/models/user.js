@@ -24,7 +24,7 @@ const User = db.define('User', {
   email: {
     type: DataTypes.STRING,
     allowNull: false,
-    primaryKey: true
+    unique: true
   },
   phoneNumber: {
     type: DataTypes.BIGINT,

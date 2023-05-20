@@ -13,7 +13,7 @@ const User = require('./models/user');
 const port = process.env.PORT || 4040;
 
 app.use(cors({
-    options: '*'
+    origin: '*'
 }));
 
 app.use(express.urlencoded({extended: true}));

@@ -2,7 +2,7 @@ const router = require('express')();
 
 const test = require('../controllers/test');
 
-const sendOtp = require('../controllers/sendOtp');
+const {sendOTP} = require('../controllers/sendOtp');
 
 const signup = require('../controllers/signup');
 
@@ -10,9 +10,9 @@ const validateOtpForLogin = require('../controllers/validateOtpForLogin');
 
 // router.get('/home',test);
 
-router.post('/sendotp',sendOtp);
+router.post('/sendotp',sendOTP);
 
-router.post('/validateOtp',sendOtp,validateOtpForLogin);
+router.post('/validateOtp',validateOtpForLogin);
 
 router.post('/signup',signup);
 
