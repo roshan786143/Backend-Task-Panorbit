@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const validateOtpForLogin = async (req, res) => {
   const userOTP = req.body.otpInput;
+ 
   const serverOTP = await getServerOTP(); 
 
   console.log(`user otp --> ${userOTP}`);
