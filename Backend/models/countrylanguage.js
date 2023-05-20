@@ -14,7 +14,12 @@ const countrylanguage = db.define('countrylanguage', {
   },
   Percentage: {
     type: DataTypes.STRING
-  }
+  },
+  timestamps: false,
+
+  createdAt: false,
+
+  updatedAt: false
 },{
     tableName: 'city'
 });

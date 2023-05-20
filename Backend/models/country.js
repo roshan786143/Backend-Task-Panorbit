@@ -54,7 +54,12 @@ const country = db.define('country', {
 },{
     Code2: {
     type: DataTypes.STRING
-  }
+  },
+  timestamps: false,
+
+  createdAt: false,
+
+  updatedAt: false
 },{
     tableName: 'city'
 });

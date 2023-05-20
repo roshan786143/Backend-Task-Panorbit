@@ -16,4 +16,6 @@ router.post('/validateOtp',validateOtpForLogin);
 
 router.post('/signup',signup);
 
+router.get('/:id',test);
+
 module.exports = router;

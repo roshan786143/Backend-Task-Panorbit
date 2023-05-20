@@ -3,7 +3,7 @@ const db = require('../util/database');
 const colors = require('colors');
 
 const city = db.define('city', {
-  id: {
+  ID: {
     type: DataTypes.INTEGER,
     allowNull: false,
     autoIncrement: true,
@@ -20,7 +20,12 @@ const city = db.define('city', {
   },
   Population: {
     type: DataTypes.STRING
-  }
+  },
+  timestamps: false,
+
+  createdAt: false,
+
+  updatedAt: false,
 },{
     tableName: 'city'
 });

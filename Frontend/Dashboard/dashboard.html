@@ -1,12 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <title>Search Bar</title>
+  <style>
+    .search-container {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .search-input {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 20px;
+    }
+    
+    .search-results {
+      position: absolute;
+      z-index: 1;
+      width: 300px;
+      margin-top: 38px;
+      background-color: #f1f1f1;
+      border: 1px solid #ccc;
+      border-top: none;
+      list-style-type: none;
+      padding: 0;
+      border-radius: 0 0 20px 20px;
+    }
+    
+    .search-results li {
+      padding: 12px 20px;
+      cursor: pointer;
+    }
+    
+    .search-results li:hover {
+      background-color: #e9e9e9;
+    }
+    
+    .search-results li.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+  </style>
 </head>
 <body>
-    <h1 id="userName">hello from Candy love</h1>
+    <h2 style="color: green;">Dashboard</h2>
+  <div class="search-container">
+    <input type="text" id="search-input" class="search-input" placeholder="Search...">
+    <ul id="search-results" class="search-results"></ul>
+  </div>
+
+  <script src="dashboard.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
 </html>
