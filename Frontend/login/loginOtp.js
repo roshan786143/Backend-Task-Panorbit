@@ -7,15 +7,12 @@ submitBtn.addEventListener("click", async (event) => {
 
   // Get the OTP input value
   let otpInput = document.getElementById("otpInput").value;
-  console.log(otpInput);
 
   try {
     // Send a POST request to validate the OTP
     const response = await axios.post("http://127.0.0.1:3000/api/validateOtp", {
       otpInput,
     });
-    console.log(response);
-    console.log(response.data.msg);
 
     // Check if the OTP validation is successful
     if (response.data.msg === "Success") {
@@ -28,6 +25,5 @@ submitBtn.addEventListener("click", async (event) => {
     }
   } catch (error) {
     console.log(error);
-    console.log("Please enter a valid OTP");
   }
 });

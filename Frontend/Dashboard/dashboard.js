@@ -31,9 +31,15 @@ searchInput.addEventListener("input", async function () {
 function showSuggestions(filteredSuggestions) {
   searchResults.innerHTML = "";
 
-  let cities = Array.isArray(filteredSuggestions.cities) ? filteredSuggestions.cities : [];
-  let countries = Array.isArray(filteredSuggestions.countries) ? filteredSuggestions.countries : [];
-  let languages = Array.isArray(filteredSuggestions.languages) ? filteredSuggestions.languages : [];
+  let cities = Array.isArray(filteredSuggestions.cities)
+    ? filteredSuggestions.cities
+    : [];
+  let countries = Array.isArray(filteredSuggestions.countries)
+    ? filteredSuggestions.countries
+    : [];
+  let languages = Array.isArray(filteredSuggestions.languages)
+    ? filteredSuggestions.languages
+    : [];
 
   const array = [...cities, ...languages];
 
@@ -46,10 +52,10 @@ function showSuggestions(filteredSuggestions) {
     const li = document.createElement("li");
     const link = document.createElement("a");
     link.textContent = suggestion;
-    link.addEventListener('click', () => {
-      localStorage.setItem('country', suggestion);
-      window.location.href = './countryDetails.html';
-    })
+    link.addEventListener("click", () => {
+      localStorage.setItem("country", suggestion);
+      window.location.href = "./countryDetails.html";
+    });
     li.appendChild(link);
     li.style.cursor = "pointer";
     searchResults.appendChild(li);
@@ -70,7 +76,6 @@ function showSuggestions(filteredSuggestions) {
 const logoutButton = document.getElementById("logout-button");
 
 logoutButton.addEventListener("click", function () {
-  console.log("Logout button clicked");
   localStorage.removeItem("Token");
   window.location.href = "../login/loginEmail.html";
 });

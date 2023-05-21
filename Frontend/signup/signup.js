@@ -11,16 +11,13 @@ signupBtn.addEventListener("click", async (event) => {
   let email = document.getElementById("email").value;
   let phoneNumber = document.getElementById("phoneNumber").value;
   let gender = document.getElementById("gender").value;
-  
+
   // Create a user object with the input values
   const user = { firstName, lastName, email, phoneNumber, gender };
-  console.log(user);
 
   try {
     // Send a POST request to the server with the user data
     const response = await axios.post("http://127.0.0.1:3000/api/signup", user);
-    console.log(response);
-    console.log(response.data.msg);
 
     // Handle the response
     if (response.data.msg === "Success") {
@@ -35,6 +32,5 @@ signupBtn.addEventListener("click", async (event) => {
     }
   } catch (err) {
     console.log(err);
-    console.log("An error occurred while posting the user signup details");
   }
 });

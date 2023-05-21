@@ -1,4 +1,4 @@
-const Country = require('../models/country');
+const Country = require("../models/country");
 
 /**
  * Sends the details of a country based on the provided country name.
@@ -11,19 +11,33 @@ const sendCountryDetails = async (req, res) => {
   try {
     // Find country details based on the country name
     const countryDetailsRecord = await Country.findAll({
-      attributes: ['Name', 'Code', 'Continent', 'Region', 'SurfaceArea', 'IndepYear', 'Population', 'LifeExpectancy', 'GNP', 'GNPOld', 'LocalName', 'GovernmentForm', 'HeadOfState', 'Capital', 'Code2'],
+      attributes: [
+        "Name",
+        "Code",
+        "Continent",
+        "Region",
+        "SurfaceArea",
+        "IndepYear",
+        "Population",
+        "LifeExpectancy",
+        "GNP",
+        "GNPOld",
+        "LocalName",
+        "GovernmentForm",
+        "HeadOfState",
+        "Capital",
+        "Code2",
+      ],
       where: {
-        'Name': countryName
-      }
+        Name: countryName,
+      },
     });
-
-    console.log(countryDetailsRecord);
 
     // Respond with the country details
     res.json({ msg: countryDetailsRecord });
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 module.exports = sendCountryDetails;

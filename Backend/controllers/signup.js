@@ -1,5 +1,4 @@
-const User = require('../models/user');
-const colors = require('colors');
+const User = require("../models/user");
 
 /**
  * Handles the signup process by storing user details in the database.
@@ -11,13 +10,17 @@ const signup = async (req, res) => {
 
   try {
     // Create a new user record in the database
-    const user = await User.create({ firstName, lastName, gender, email, phoneNumber });
-    console.log(user);
-    console.log("Data stored in the database successfully".green);
-    res.json({ msg: 'Success' });
+    const user = await User.create({
+      firstName,
+      lastName,
+      gender,
+      email,
+      phoneNumber,
+    });
+
+    res.json({ msg: "Success" });
   } catch (err) {
     console.log(err);
-    console.log("There's an error while storing the user details in the database".red);
     res.json({ msg: "Failure" });
   }
 };

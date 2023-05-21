@@ -23,7 +23,6 @@ const authenticate = async (req, res, next) => {
 
     // Check if decoded email is missing
     if (!userEmail) {
-      console.log("User email is undefined or empty");
       return res.status(401).json({ error: "User email is missing" });
     }
 

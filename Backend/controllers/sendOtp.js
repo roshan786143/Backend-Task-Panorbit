@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const User = require("../models/user");
 const email = require("../services/mail");
 const otp = require("../services/otp");
 
@@ -15,15 +15,12 @@ const sendOTP = async (req, res) => {
   try {
     const user = await User.findAll({
       where: {
-        email: userEmail
-      }
+        email: userEmail,
+      },
     });
-    console.log(user.length);
     if (user.length !== 0) {
       // Generate a new OTP
       serverOTP = otp();
-
-      console.log(serverOTP);
 
       const mailOptions = {
         from: process.env.GMAIL,
@@ -35,14 +32,10 @@ const sendOTP = async (req, res) => {
       // Send the OTP via email
       await email.sendMail(mailOptions);
 
-      console.log("OTP sent successfully.");
-      console.log(serverOTP);
-
       res.json({ msg: `OTP sent successfully --> ${serverOTP}`, check: true });
     } else {
-      res.json({ msg: 'User not found', check: false });
+      res.json({ msg: "User not found", check: false });
     }
-
   } catch (error) {
     console.log(error);
   }

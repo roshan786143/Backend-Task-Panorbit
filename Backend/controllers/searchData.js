@@ -12,8 +12,6 @@ const searchData = async (req, res) => {
   const searchTerm = req.params.term;
   const userEmail = req.user;
 
-  console.log(searchTerm);
-
   try {
     // Search for cities
     let cityResults = await city.findAll({
@@ -55,7 +53,11 @@ const searchData = async (req, res) => {
     languageResults = languageResults.map((item) => item.dataValues.Language);
 
     // Respond with the search results
-    res.json({ cities: cityResults, countries: countryResults, languages: languageResults });
+    res.json({
+      cities: cityResults,
+      countries: countryResults,
+      languages: languageResults,
+    });
   } catch (error) {
     console.log(error);
   }
