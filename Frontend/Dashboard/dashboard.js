@@ -1,87 +1,88 @@
-// Sample data for autosuggestion
-const suggestions = [
-    { value: 'New York', category: 'City' },
-    { value: 'London', category: 'City' },
-    { value: 'Paris', category: 'City' },
-    { value: 'Tokyo', category: 'City' },
-    { value: 'United States', category: 'Country' },
-    { value: 'United Kingdom', category: 'Country' },
-    { value: 'France', category: 'Country' },
-    { value: 'Japan', category: 'Country' },
-    { value: 'English', category: 'Language' },
-    { value: 'French', category: 'Language' },
-    { value: 'Spanish', category: 'Language' },
-  ];
-  
-  const searchInput = document.getElementById('search-input');
-  const searchResults = document.getElementById('search-results');
-  
-  // Event listener for input changes
-  searchInput.addEventListener('input', function() {
+const searchButton = document.getElementById("search-button");
+const searchInput = document.getElementById("search-input");
+const searchResults = document.getElementById("search-results");
+
+// Event listener for search button click
+// searchButton.addEventListener("click", async function () {
+//   const searchTerm = searchInput.value.toLowerCase();
+//   try {
+//     const { data } = await axios.get(
+//       `http://127.0.0.1:3000/api/search/${searchTerm}`
+//     );
+//     showSuggestions(data.msg);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
+// Event listener for input changes
+searchInput.addEventListener("input", async function () {
     const searchTerm = searchInput.value.toLowerCase();
-    const filteredSuggestions = suggestions.filter(function(suggestion) {
-      return suggestion.value.toLowerCase().startsWith(searchTerm);
-    });
-  
-    showSuggestions(filteredSuggestions);
-  });
-  
-  // Event listener for click on search results
-  searchResults.addEventListener('click', function(event) {
-    if (event.target && event.target.matches('li')) {
-      const selectedValue = event.target.textContent;
-      searchInput.value = selectedValue;
-      clearSuggestions();
-      // Perform search or other action based on selected value
-      console.log('Selected:', selectedValue);
+    const token = localStorage.getItem('Token');
+    try {
+      const { data } = await axios.get(
+        `http://127.0.0.1:3000/api/search/${searchTerm}`,
+        {
+          headers: {
+            Authorization: `${token}`
+          }
+        }
+      );
+      showSuggestions(data.msg);
+    } catch (error) {
+      console.log(error);
+      alert('Invalid Token');
+      window.location.href = '../login/loginEmail.html';
     }
   });
   
-  // Event listener for Enter key press
-  searchInput.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-      const searchTerm = searchInput.value;
-      // Call your backend API with the search term
-      callBackendAPI(searchTerm);
-    }
+
+// Event listener for click on search results
+// searchResults.addEventListener("click", function (event) {
+//   if (event.target && event.target.matches("li")) {
+//     const selectedValue = event.target.textContent;
+//     searchInput.value = selectedValue;
+//     console.log("Selected:", selectedValue);
+//   }
+// });
+
+// Event listener for Enter key press
+// searchInput.addEventListener("keydown", function (event) {
+//   if (event.key === "Enter") {
+//     const searchTerm = searchInput.value;
+//     console.log(searchTerm);
+//   }
+// });
+
+// Display the suggestions in the dropdown
+function showSuggestions(filteredSuggestions) {
+  searchResults.innerHTML = "";
+
+  if (!Array.isArray(filteredSuggestions) || filteredSuggestions.length === 0) {
+    searchResults.style.display = "none";
+    return;
+  }
+
+  filteredSuggestions.forEach(function (suggestion) {
+    const li = document.createElement("li");
+    const link = document.createElement("a");
+    link.href = `country-details.html?country=${encodeURIComponent(
+      suggestion
+    )}`;
+    link.textContent = suggestion;
+    li.appendChild(link);
+    searchResults.appendChild(li);
   });
-  
-  // Display the suggestions in the dropdown
-  function showSuggestions(filteredSuggestions) {
-    clearSuggestions();
-  
-    if (filteredSuggestions.length === 0) {
-      return;
-    }
-  
-    filteredSuggestions.forEach(function(suggestion) {
-      const li = document.createElement('li');
-      li.textContent = suggestion.value;
-      searchResults.appendChild(li);
-    });
-  
-    searchResults.firstChild.classList.add('active');
-  }
-  
-  // Clear the suggestion dropdown
-  function clearSuggestions() {
-    searchResults.innerHTML = '';
-  }
-  
-  // Call your backend API with the search term using Axios
-  function callBackendAPI(searchTerm) {
-    // Replace the API endpoint with your actual backend API endpoint
-    const endpoint = 'https://jsonplaceholder.typicode.com/comments';
-  
-    // Make a request to your backend API using Axios
-    axios.get(endpoint, { params: { q: searchTerm } })
-      .then(response => {
-        // Process the response from the backend API
-        const data = response.data;
-        console.log('API response:', data);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  }
-  
+
+  searchResults.style.display = "block";
+  searchResults.firstChild.classList.add("active");
+}
+
+const logoutButton = document.getElementById("logout-button");
+
+logoutButton.addEventListener("click", function () {
+
+    console.log("Logout button clicked");
+    localStorage.removeItem('Token');
+    window.location.href = '../login/loginEmail.html';
+});

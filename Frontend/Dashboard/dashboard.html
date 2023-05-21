@@ -3,40 +3,80 @@
 <head>
   <title>Search Bar</title>
   <style>
-    .search-container {
-      position: relative;
-      display: inline-block;
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #f1f1f1;
     }
-    
+
+    .logout-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 20px;
+      background-color: hotpink;
+      color: white;
+      cursor: pointer;
+    }
+
+    .dashboard-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .search-container {
+      margin-top: 20px;
+      position: relative;
+    }
+
     .search-input {
       width: 300px;
       padding: 10px;
       font-size: 16px;
       border-radius: 20px;
     }
-    
+
+    .search-button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 20px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
     .search-results {
       position: absolute;
+      top: 100%;
+      left: 0;
       z-index: 1;
       width: 300px;
-      margin-top: 38px;
       background-color: #f1f1f1;
       border: 1px solid #ccc;
       border-top: none;
       list-style-type: none;
       padding: 0;
       border-radius: 0 0 20px 20px;
+      display: none;
     }
-    
+
     .search-results li {
       padding: 12px 20px;
       cursor: pointer;
     }
-    
+
     .search-results li:hover {
       background-color: #e9e9e9;
     }
-    
+
     .search-results li.active {
       background-color: #4CAF50;
       color: white;
@@ -44,13 +84,17 @@
   </style>
 </head>
 <body>
+  <div class="dashboard-container">
     <h2 style="color: green;">Dashboard</h2>
-  <div class="search-container">
-    <input type="text" id="search-input" class="search-input" placeholder="Search...">
-    <ul id="search-results" class="search-results"></ul>
+    <div class="search-container">
+      <input type="text" id="search-input" class="search-input" placeholder="Search...">
+      <button id="search-button" class="search-button">Search</button>
+      <ul id="search-results" class="search-results"></ul>
+    </div>
+    <button id="logout-button" class="logout-button">Logout</button>
   </div>
 
-  <script src="dashboard.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="dashboard.js"></script>
 </body>
 </html>
