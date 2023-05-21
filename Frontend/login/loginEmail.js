@@ -1,12 +1,12 @@
 // Get the login button element
-let loginBtn = document.getElementById("loginBtn");
+const loginBtn = document.getElementById("loginBtn");
 
 // Add click event listener to the login button
 loginBtn.addEventListener("click", async (event) => {
   event.preventDefault();
 
   // Get the email input value
-  let email = document.getElementById("email").value;
+  const email = document.getElementById("email").value;
   console.log(email);
 
   try {
@@ -14,13 +14,17 @@ loginBtn.addEventListener("click", async (event) => {
     const response = await axios.post("http://127.0.0.1:3000/api/sendOtp", {
       email,
     });
-    console.log(response);
+    console.log(response.data.check);
 
-    // Show success message and redirect after a delay
-    setTimeout(() => {
-      alert("OTP sent to your email successfully");
-      window.location.href = "./loginOtp.html";
-    }, 2000);
+    if (response.data.check === false) {
+      alert('User Not Found, Please Sign up');
+    } else {
+      // Show success message and redirect after a delay
+      setTimeout(() => {
+        alert("OTP sent to your email successfully");
+        window.location.href = "./loginOtp.html";
+      }, 2000);
+    }
   } catch (error) {
     console.log(error);
     console.log("There's an error while posting the data");
