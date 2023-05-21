@@ -2,6 +2,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../util/database');
 const colors = require('colors');
 
+// Define the 'User' model
 const User = db.define('User', {
   id: {
     type: DataTypes.INTEGER,
@@ -30,20 +31,21 @@ const User = db.define('User', {
     type: DataTypes.BIGINT,
     allowNull: false
   }
-},{
-    tableName: 'users'
+}, {
+  tableName: 'users'
 });
 
-console.log(User === db.models.User); 
+console.log(User === db.models.User);
 
-(async()=>{
-    try{
-        await User.sync({ force: false });
-        console.log("User table synced succussfully".green);
-    }catch(err){
-        console.log("There's an error while syncing the user table".red);
-        console.log(err);
-    }
+// Immediately invoked async function to sync the 'User' table
+(async () => {
+  try {
+    await User.sync({ force: false });
+    console.log("User table synced successfully".green);
+  } catch (err) {
+    console.log("There's an error while syncing the User table".red);
+    console.log(err);
+  }
 })();
 
 module.exports = User;

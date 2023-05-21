@@ -2,6 +2,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../util/database');
 const colors = require('colors');
 
+// Define the 'country' model
 const country = db.define('country', {
   Code: {
     type: DataTypes.STRING
@@ -55,12 +56,13 @@ const country = db.define('country', {
 
 console.log(country === db.models.country);
 
+// Immediately invoked async function to sync the 'country' table
 (async () => {
   try {
     await country.sync({ force: false });
     console.log("Country table synced successfully".green);
   } catch (err) {
-    console.log("There's an error while syncing the user table".red);
+    console.log("There's an error while syncing the country table".red);
     console.log(err);
   }
 })();

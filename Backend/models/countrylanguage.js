@@ -1,7 +1,8 @@
-const {Sequelize ,DataTypes } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../util/database');
 const colors = require('colors');
 
+// Define the 'countrylanguage' model
 const countrylanguage = db.define('countrylanguage', {
   CountryCode: {
     type: DataTypes.STRING
@@ -24,6 +25,7 @@ const countrylanguage = db.define('countrylanguage', {
 
 console.log(countrylanguage === db.models.countrylanguage);
 
+// Immediately invoked async function to sync the 'countrylanguage' table
 (async () => {
   try {
     await countrylanguage.sync({ force: false });

@@ -4,11 +4,19 @@ const otp = require("../services/otp");
 let serverOTP = null;
 let userEmail = null;
 
+/**
+ * Sends an OTP to the user's email.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ */
 const sendOTP = async (req, res) => {
   userEmail = req.body.email;
 
+  // Generate a new OTP
   serverOTP = otp();
+
   console.log(serverOTP);
+
   try {
     const mailOptions = {
       from: process.env.GMAIL,
@@ -17,6 +25,7 @@ const sendOTP = async (req, res) => {
       text: `Your OTP is: ${serverOTP}`,
     };
 
+    // Send the OTP via email
     await email.sendMail(mailOptions);
 
     console.log("OTP sent successfully.");
@@ -32,5 +41,5 @@ const sendOTP = async (req, res) => {
 module.exports = {
   sendOTP,
   getUserEmail: () => userEmail,
-  getServerOTP: () => serverOTP, // Export a getter function for serverOTP
+  getServerOTP: () => serverOTP,
 };

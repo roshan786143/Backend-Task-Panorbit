@@ -10,35 +10,44 @@
             margin: 0 auto;
         }
         .logout-button {
-        padding: 5px 10px;
-        height: fit-content;
-        margin-top: 10px;
-        font-size: 16px;
-        border-radius: 20px;
-        background-color: hotpink;
-        margin-right: 1rem;
-        color: white;
-        cursor: pointer;
-      }
+            padding: 5px 10px;
+            height: fit-content;
+            margin-top: 10px;
+            font-size: 16px;
+            border-radius: 20px;
+            background-color: hotpink;
+            margin-right: 1rem;
+            color: white;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body style="background-color: azure;">
+    <!-- Add a logout button -->
     <button id="logout-button" class="logout-button">Logout</button>
+
+    <!-- Add a heading for the country details -->
     <h2 style="text-align: center; color: blueviolet;">Country Details</h2>
+
+    <!-- Create a table for displaying the country details -->
     <table class="table table-striped center-table">
         <thead>
-          <tr>
-            <th scope="col">Fields : </th>
-            <th scope="col">Values : </th> 
-          </tr>
+            <tr>
+                <th scope="col">Fields:</th>
+                <th scope="col">Values:</th>
+            </tr>
         </thead>
         <tbody>
-          <tr id="details">
-            <td id="data"></td>
-          </tr>
+            <tr id="details">
+                <td id="data"></td>
+            </tr>
         </tbody>
     </table>
+
+    <!-- Include the JavaScript file -->
     <script src="countryDetails.js"></script>
+
+    <!-- Include Axios library -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
 </html>

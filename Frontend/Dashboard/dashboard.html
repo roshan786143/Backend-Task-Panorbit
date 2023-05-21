@@ -11,6 +11,7 @@
         background-color: aqua;
       }
 
+      /* Hide scrollbar */
       .scrollbar-hidden::-webkit-scrollbar {
         display: none;
       }
@@ -64,22 +65,8 @@
         cursor: pointer;
       }
 
-      /* .search-results {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 1;
-        width: 300px;
-        background-color: #f1f1f1;
-        border: 1px solid #ccc;
-        border-top: none;
-        list-style-type: none;
-        padding: 0;
-        border-radius: 0 0 20px 20px;
-        display: none;
-      } */
       .search-results {
-        position:fixed;
+        position: fixed;
         top: 21.5rem;
         left: 27.5rem;
         width: 300px;
@@ -89,8 +76,7 @@
         list-style-type: none;
         padding: 0;
         border-radius: 0 0 20px 20px;
-        /* display: none; */
-        visibility: hidden;
+        visibility: hidden; /* Hide by default */
       }
 
       .search-results li {

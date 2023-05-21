@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
+    // Get the stored country and token from localStorage
     const country = localStorage.getItem("country");
     console.log(country);
     const token = localStorage.getItem('Token');
     console.log(token);
 
+    // Make a POST request to fetch country details
     axios
         .post(
             `http://127.0.0.1:3000/api/country`,
@@ -19,6 +21,8 @@ document.addEventListener("DOMContentLoaded", function() {
             let keys = Object.keys(res.data.msg[0]);
             console.log(keys);
             let details = document.getElementById('details');
+            
+            // Loop through the keys and create table rows dynamically
             for(let i = 0; i < keys.length; i++){
                 let row = document.createElement('tr');
 
@@ -41,7 +45,8 @@ document.addEventListener("DOMContentLoaded", function() {
 const logoutButton = document.getElementById("logout-button");
 
 logoutButton.addEventListener("click", function () {
-  console.log("Logout button clicked");
-  localStorage.removeItem("Token");
-  window.location.href = "../login/loginEmail.html";
+    // Handle logout button click event
+    console.log("Logout button clicked");
+    localStorage.removeItem("Token");
+    window.location.href = "../login/loginEmail.html";
 });
