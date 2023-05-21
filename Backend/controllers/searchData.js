@@ -8,7 +8,7 @@ const searchData = async (req, res) => {
   const userEmail = req.user;
   console.log(data);
   try {
-    const cityResults = await city.findAll({
+    let cityResults = await city.findAll({
       attributes: ["Name"],
       where: {
         Name: {
@@ -17,7 +17,11 @@ const searchData = async (req, res) => {
       },
     });
 
-    const countryResults = await country.findAll({
+    cityResults = cityResults.map(item => {
+        return item.dataValues.Name;
+    })
+
+    let countryResults = await country.findAll({
       attributes: ["Name"],
       where: {
         Name: {
@@ -26,7 +30,13 @@ const searchData = async (req, res) => {
       },
     });
 
-    const languageResults = await countrylanguage.findAll({
+    console.log(countryResults);
+
+    countryResults = countryResults.map(item => {
+        return item.dataValues.Name;
+    })
+
+    let languageResults = await countrylanguage.findAll({
       attributes: ["Language"],
       where: {
         Language: {
@@ -35,15 +45,22 @@ const searchData = async (req, res) => {
       },
     });
 
-    const output = [...cityResults, ...countryResults, ...languageResults].map(item => {
-        return item.dataValues.Name;
-    }).filter(item => item != undefined);
+    // console.log(languageResults);
+
+    languageResults = languageResults.map(item => {
+        return item.dataValues.Language;
+    })
+
+
+    // const output = [...cityResults, ...countryResults, ...languageResults].map(item => {
+    //     return item.dataValues.Name;
+    // }).filter(item => item != undefined);
 
     // console.log(cityResults);
     // console.log(countryResults);
     // console.log(languageResults);
 
-    res.json({ msg: output });
+    res.json({ cities: cityResults, countries: countryResults, languages : languageResults });
   } catch (error) {
     console.log(error);
   }
