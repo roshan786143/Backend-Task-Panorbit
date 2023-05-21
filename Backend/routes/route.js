@@ -1,7 +1,5 @@
 const router = require('express')();
 
-const test = require('../controllers/test');
-
 const {sendOTP} = require('../controllers/sendOtp');
 
 const signup = require('../controllers/signup');
@@ -25,7 +23,5 @@ router.post('/signup',signup);
 router.post('/country',authenticate,sendCountryDetails);
 
 router.get('/search/:term',authenticate,searchData);
-
-router.get('/:id',test);
 
 module.exports = router;

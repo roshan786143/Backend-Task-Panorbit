@@ -37,3 +37,11 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(err);
         });
 });
+
+const logoutButton = document.getElementById("logout-button");
+
+logoutButton.addEventListener("click", function () {
+  console.log("Logout button clicked");
+  localStorage.removeItem("Token");
+  window.location.href = "../login/loginEmail.html";
+});
