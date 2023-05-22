@@ -21,7 +21,18 @@ Create a .env file and include the following configurations:
 
 Port Number: Specify the desired port number for running the project.
 
-Gmail Credentials: Provide your Gmail address and password. These credentials will be used for sending emails via Nodemailer.
+Gmail Credentials: [Provide your Gmail address and (generated app password), Not Your Gmail Password.for generating the app password you need to follow the below steps: 
+
+Log in to your Google account
+Go to My Account > Sign-in & Security > App Passwords
+(Sign in again to confirm it's you)
+Scroll down to Select App (in the Password & sign-in method box) and choose Other (custom name)
+Give this app password a name, e.g. "nodemailer"
+Choose Generate
+Copy the long generated password and paste it into your Node.js script instead of your actual Gmail password. (You don't need the spaces.)
+
+These credentials will be used for sending emails via Nodemailer.]
+
 
 Secret Key: Generate and add a secret key for JWT (JSON Web Tokens) to ensure secure authentication.
 
