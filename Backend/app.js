@@ -28,4 +28,4 @@ app.use(express.json());
 app.use("/api", router);
 
 // Start the server
-app.listen(port, () => console.log(`Server started on port ${port}`.bgGreen));
+app.listen(port, () => console.log(`Server started on port ${port}`));
